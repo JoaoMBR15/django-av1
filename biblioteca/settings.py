@@ -125,3 +125,8 @@ MAILERS = {
         "BACKEND": "django.core.mail.backends.console.EmailBackend",
     },
 }
+
+INSTALLED_APPS = [
+# ... apps padrão do Django ...
+'acervo', # nosso app
+]
