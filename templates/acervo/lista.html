@@ -1,5 +1,8 @@
-{% extends 'base.html' %}
-{% block conteudo %}
 <h1>Acervo</h1>
-<!-- lista aqui -->
-{% endblock %}
+<ul>
+    {% for livro in livros %}
+        <li>{{ livro.titulo }} — {{ livro.autor }}</li>
+    {% empty %}
+        <li>Nenhum livro cadastrado.</li>
+    {% endfor %}
+</ul>
