@@ -1,26 +1,33 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-def inicio(request):
-    return HttpResponse(
-        'Olá, acervo'
-)
 
-from django.shortcuts import render
 from .models import Livro
+from .forms import LivroForm
+
+
+def inicio(request):
+    return HttpResponse('Olá, acervo')
+
+
 def lista_livros(request):
-    livros = Livro.objects.all() # busca no banco
+    livros = Livro.objects.all()
+
     return render(
-        request, 'acervo/lista.html',
-        {'livros': livros} # envia ao template
-)
+        request,
+        'acervo/lista.html',
+        {'livros': livros}
+    )
+
 
 def novo_livro(request):
     if request.method == 'POST':
         form = LivroForm(request.POST)
-            if form.is_valid():
-                form.save() # grava no banco
-                return redirect('lista')
+
+        if form.is_valid():
+            form.save()
+            return redirect('lista')
+
     else:
         form = LivroForm()
-    return render(request, 'acervo/form.html', {'form': form})
+
+    return render(request, 'form.html', {'form': form})
