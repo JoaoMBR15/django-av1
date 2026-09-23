@@ -2,35 +2,202 @@
 
 {% block conteudo %}
 
-<div class="formulario-container">
+<div class="titulo-pagina">
 
-    <div class="formulario-card">
+    <div>
+        <h2>📚 Acervo da Biblioteca</h2>
+        <p>Pesquise e consulte os livros cadastrados.</p>
+    </div>
 
-        <h2>📖 Cadastrar novo livro</h2>
+    <a class="botao" href="{% url 'novo_livro' %}">
+        + Novo livro
+    </a>
 
-        <p>Preencha os dados do livro abaixo.</p>
+</div>
 
-        <form method="POST">
 
-            {% csrf_token %}
+<!-- PESQUISA -->
 
-            {{ form.as_p }}
+<div class="pesquisa-card">
 
-            <div class="acoes">
+    <h3>🔎 Pesquisar acervo</h3>
 
-                <a class="botao-secundario" href="{% url 'lista' %}">
-                    Cancelar
-                </a>
+    <form method="GET" class="form-pesquisa">
 
-                <button class="botao" type="submit">
-                    Salvar livro
-                </button>
+        <div class="campo-pesquisa">
 
-            </div>
+            <label>Nome do livro</label>
 
-        </form>
+            <input
+                type="text"
+                name="nome"
+                placeholder="Digite o nome do livro..."
+                value="{{ nome }}"
+            >
+
+        </div>
+
+
+        <div class="campo-pesquisa">
+
+            <label>Tipo de acervo</label>
+
+            <select name="tipo">
+
+                <option value="">Todos</option>
+
+                <option value="FISICO"
+                    {% if tipo == 'FISICO' %}selected{% endif %}>
+                    Físico
+                </option>
+
+                <option value="DIGITAL"
+                    {% if tipo == 'DIGITAL' %}selected{% endif %}>
+                    Digital
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="campo-pesquisa">
+
+            <label>Categoria</label>
+
+            <select name="categoria">
+
+                <option value="">Todas</option>
+
+                <option value="000" {% if categoria == '000' %}selected{% endif %}>
+                    000 – Generalidades e Informação
+                </option>
+
+                <option value="100" {% if categoria == '100' %}selected{% endif %}>
+                    100 – Filosofia e Psicologia
+                </option>
+
+                <option value="200" {% if categoria == '200' %}selected{% endif %}>
+                    200 – Religião e Teologia
+                </option>
+
+                <option value="300" {% if categoria == '300' %}selected{% endif %}>
+                    300 – Ciências Sociais e Direito
+                </option>
+
+                <option value="400" {% if categoria == '400' %}selected{% endif %}>
+                    400 – Linguística e Idiomas
+                </option>
+
+                <option value="500" {% if categoria == '500' %}selected{% endif %}>
+                    500 – Ciências Puras
+                </option>
+
+                <option value="600" {% if categoria == '600' %}selected{% endif %}>
+                    600 – Ciências Aplicadas
+                </option>
+
+                <option value="700" {% if categoria == '700' %}selected{% endif %}>
+                    700 – Artes e Recreação
+                </option>
+
+                <option value="800" {% if categoria == '800' %}selected{% endif %}>
+                    800 – Literatura
+                </option>
+
+                <option value="900" {% if categoria == '900' %}selected{% endif %}>
+                    900 – História e Geografia
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="botoes-pesquisa">
+
+            <button type="submit" class="botao">
+                Pesquisar
+            </button>
+
+            <a href="{% url 'lista' %}" class="botao-secundario">
+                Limpar
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<!-- LISTA -->
+
+<div class="lista-livros">
+
+    {% for livro in livros %}
+
+    <div class="card-livro">
+
+        <div class="icone-livro">
+            📖
+        </div>
+
+        <div class="informacoes">
+
+            <h3>{{ livro.titulo }}</h3>
+
+            <p>
+                <strong>Autor:</strong>
+                {{ livro.autor }}
+            </p>
+
+            <p>
+                <strong>Ano:</strong>
+                {{ livro.ano }}
+            </p>
+
+            <p>
+                <strong>Tipo:</strong>
+                {{ livro.get_tipo_acervo_display }}
+            </p>
+
+            <p>
+                <strong>Categoria:</strong>
+                {{ livro.get_categoria_display }}
+            </p>
+
+            {% if livro.disponivel %}
+                <span class="disponivel">
+                    Disponível
+                </span>
+            {% else %}
+                <span class="indisponivel">
+                    Indisponível
+                </span>
+            {% endif %}
+
+        </div>
 
     </div>
+
+    {% empty %}
+
+    <div class="vazio">
+
+        <h3>📚 Nenhum livro encontrado</h3>
+
+        <p>
+            Não encontramos livros com os filtros selecionados.
+        </p>
+
+        <a class="botao" href="{% url 'novo_livro' %}">
+            Cadastrar livro
+        </a>
+
+    </div>
+
+    {% endfor %}
 
 </div>
 
