@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Biblioteca</title>
+
+    <link rel="stylesheet" href="{% static 'acervo/estilo.css' %}">
+</head>
+
+<body>
+
+    <header class="cabecalho">
+        <div class="container">
+            <h1>📚 Biblioteca</h1>
+
+            <nav>
+                <a href="{% url 'lista' %}">Livros</a>
+                <a href="{% url 'novo_livro' %}">Cadastrar livro</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block conteudo %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2026 - Sistema de Biblioteca</p>
+    </footer>
+
+</body>
+</html>

@@ -30,4 +30,4 @@ def novo_livro(request):
     else:
         form = LivroForm()
 
-    return render(request, 'form.html', {'form': form})
+    return render(request, 'acervo/form.html', {'form': form})

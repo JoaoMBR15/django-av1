@@ -1,0 +1,279 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eef6ff;
+    color: #243447;
+}
+
+/* CONTAINER */
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* CABEÇALHO */
+
+.cabecalho {
+    background: #173b63;
+    color: white;
+    padding: 20px 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.cabecalho .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cabecalho h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* CONTEÚDO */
+
+main {
+    min-height: 75vh;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+/* TÍTULO */
+
+.titulo-pagina {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.titulo-pagina h2 {
+    margin-bottom: 8px;
+    color: #173b63;
+}
+
+.titulo-pagina p {
+    margin-top: 0;
+    color: #607080;
+}
+
+/* BOTÕES */
+
+.botao {
+    display: inline-block;
+    background: #173b63;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.botao:hover {
+    background: #24598f;
+}
+
+.botao-secundario {
+    display: inline-block;
+    background: #dfe8f1;
+    color: #243447;
+    text-decoration: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-weight: bold;
+}
+
+.botao-secundario:hover {
+    background: #cbd8e5;
+}
+
+/* CARDS DOS LIVROS */
+
+.lista-livros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card-livro {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s;
+}
+
+.card-livro:hover {
+    transform: translateY(-4px);
+}
+
+.icone-livro {
+    font-size: 40px;
+}
+
+.informacoes h3 {
+    margin-top: 0;
+    color: #173b63;
+}
+
+.informacoes p {
+    margin: 8px 0;
+}
+
+/* STATUS */
+
+.disponivel,
+.indisponivel {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.disponivel {
+    background: #d8f3dc;
+    color: #24733b;
+}
+
+.indisponivel {
+    background: #f8d7da;
+    color: #a32935;
+}
+
+/* FORMULÁRIO */
+
+.formulario-container {
+    display: flex;
+    justify-content: center;
+}
+
+.formulario-card {
+    background: white;
+    width: 100%;
+    max-width: 600px;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.formulario-card h2 {
+    margin-top: 0;
+    color: #173b63;
+}
+
+.formulario-card p {
+    color: #607080;
+}
+
+form p {
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+    color: #243447;
+}
+
+form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd8e5;
+    border-radius: 7px;
+    font-size: 16px;
+}
+
+form input:focus {
+    outline: none;
+    border-color: #24598f;
+}
+
+.acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+/* SEM LIVROS */
+
+.vazio {
+    background: white;
+    text-align: center;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.vazio h3 {
+    color: #173b63;
+}
+
+/* RODAPÉ */
+
+footer {
+    background: #173b63;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* CELULAR */
+
+@media (max-width: 700px) {
+
+    .cabecalho .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .titulo-pagina {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .acoes {
+        flex-direction: column;
+    }
+
+    .botao,
+    .botao-secundario {
+        text-align: center;
+    }
+}
